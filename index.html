@@ -24,6 +24,32 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light); color: #333; overflow-x: hidden; }
 
+        /* --- NEW: PRELOADER (LOADING SPINNER) --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark); /* Matches Header Color */
+            z-index: 9999; /* On top of everything */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease; /* Smooth fade out */
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid var(--secondary); /* Yellow Spinner */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* --- BACKDROP --- */
         .backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; }
 
@@ -138,6 +164,10 @@
 
 <body>
 
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
     <div id="backdrop" class="backdrop" onclick="closeNav()"></div>
 
     <div id="mySideDrawer" class="sidenav">
@@ -205,7 +235,7 @@
             
             <div class="contact-info">
                 <h2>Let's Connect</h2>
-                <p>Have a doubt? Click below to message me instantly.</p>
+                <p>Have a doubt? Click below to reach me instantly.</p>
                 
                 <a href="mailto:ashutoshkl1412@gmail.com" class="info-item">
                     <div class="info-icon"><i class="fas fa-envelope"></i></div>
@@ -231,6 +261,7 @@
                     </div>
                 </a>
             </div>
+
         </div>
     </section>
 
@@ -246,6 +277,15 @@
     <script src="https://paulirish.github.io/lite-youtube-embed/src/lite-yt-embed.js"></script>
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        /* --- PRELOADER LOGIC --- */
+        window.addEventListener("load", function(){
+            var loader = document.getElementById("preloader");
+            loader.style.opacity = "0"; // Fade out
+            setTimeout(function(){
+                loader.style.display = "none"; // Remove from screen
+            }, 500);
+        });
 
         function openNav() {
             document.getElementById("mySideDrawer").style.width = "260px";
