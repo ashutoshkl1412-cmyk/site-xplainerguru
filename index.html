@@ -3,86 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xplainer Guru - Links</title>
+    <title>Xplainer Guru - Learn Simply</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            background-color: #121212; /* Dark Mode Background */
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        /* --- General Setup --- */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* Profile Logo Style */
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* Makes it a circle */
-            object-fit: cover;
-            border: 3px solid #007bff;
-            margin-bottom: 10px;
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
         }
 
-        h1 { margin-bottom: 5px; font-size: 24px; }
-        p { color: #bbb; margin-bottom: 30px; }
-
-        /* Button Container */
-        .links {
+        /* --- Header & Logo --- */
+        header {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 350px; /* Keeps buttons from getting too wide */
-            gap: 15px; /* Space between buttons */
+            align-items: center;
         }
 
-        /* Shared Button Style */
-        .btn {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .site-logo {
+            height: 50px; /* Adjust this size as needed */
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            color: #007bff; /* Blue accent for 'Guru' */
+        }
+
+        /* --- Hero Section (Welcome Area) --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* --- Content Area (Placeholder) --- */
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* --- FLOATING SOCIAL BUTTONS (Bottom Right) --- */
+        .social-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column-reverse; /* Stacks them upwards */
+            gap: 15px;
+            z-index: 1000;
+            align-items: center;
+        }
+
+        .social-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
             text-decoration: none;
             color: white;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 50px; /* Rounded pill shape */
-            transition: transform 0.2s;
+            font-size: 28px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .btn:hover { transform: scale(1.05); } /* Slightly grows when hovered */
+        .social-btn:hover {
+            transform: translateY(-5px); /* Moves up slightly on hover */
+            box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+        }
 
-        /* Specific Colors */
-        .youtube { background-color: #FF0000; }
-        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        /* Button Specific Colors */
         .whatsapp { background-color: #25D366; }
-        .website { background-color: #333; border: 1px solid white; }
+        .youtube { background-color: #FF0000; }
+        .instagram { 
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
+        }
 
+        /* Tooltip text (appears when you hover) */
+        .social-btn::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 70px; /* Puts text to the left of button */
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+
+        .social-btn:hover::after {
+            opacity: 1;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
-    <img src="logo.png" alt="Xplainer Guru" class="profile-img">
+    <header>
+        <a href="#" class="logo-container">
+            <img src="logo.png" alt="XG" class="site-logo">
+            <div class="logo-text">Xplainer <span>Guru</span></div>
+        </a>
+    </header>
 
-    <h1>Xplainer Guru</h1>
-    <p>Explain everything in a simple way</p>
+    <section class="hero">
+        <h1>Welcome to Xplainer Guru</h1>
+        <p>
+            I explain everything in a simple and fun way. 
+            Learn through visuals, animations, and easy examples. 
+            No boring talks, only clear explaining.
+        </p>
+    </section>
 
-    <div class="links">
-        <a href="https://www.youtube.com/@XplainerGuruOfficial" class="btn youtube" target="_blank">
-            YouTube Channel
+    <section class="content">
+        <h2>Latest Tutorials</h2>
+        <div class="card">
+            <h3>🚀 Coming Soon...</h3>
+            <p>New exciting tutorials on science and tech are on the way!</p>
+        </div>
+    </section>
+
+    <div class="social-float">
+        
+        <a href="https://whatsapp.com/channel/0029Vb7p4QV0QeadmOIpgx36" 
+           target="_blank" 
+           class="social-btn whatsapp" 
+           data-label="Join WhatsApp Channel">
+            <i class="fa-brands fa-whatsapp"></i>
         </a>
 
-        <a href="https://www.instagram.com/xplainer.guru.official" class="btn instagram" target="_blank">
-            Instagram
+        <a href="https://www.youtube.com/@XplainerGuruOfficial" 
+           target="_blank" 
+           class="social-btn youtube" 
+           data-label="Watch on YouTube">
+            <i class="fa-brands fa-youtube"></i>
         </a>
 
-        <a href="YOUR_WHATSAPP_LINK_HERE" class="btn whatsapp" target="_blank">
-            Join WhatsApp Channel
+        <a href="https://www.instagram.com/xplainer.guru.official/" 
+           target="_blank" 
+           class="social-btn instagram" 
+           data-label="Follow on Instagram">
+            <i class="fa-brands fa-instagram"></i>
         </a>
+
     </div>
+
+    <footer>
+        &copy; 2026 Xplainer Guru. All rights reserved.
+    </footer>
 
 </body>
 </html>
