@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>XplainerGuru | Class 8 Portal</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -15,8 +15,17 @@
             --light: #f8f9fa; --whatsapp: #25d366; --instagram: #e1306c; --youtube: #ff0000;
         }
 
+        * { box-sizing: border-box; } /* Prevents padding from breaking widths */
+
         html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light); color: #333; overflow-x: hidden; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            background: var(--light); 
+            color: #333; 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
+        }
 
         /* --- PRELOADER --- */
         #preloader {
@@ -32,64 +41,115 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* --- HEADER (FIXED BOX NAMES) --- */
+        /* --- HEADER --- */
         header { 
-            background: var(--dark); padding: 0 10px; display: flex; align-items: center; 
-            justify-content: space-between; position: sticky; top: 0; z-index: 2000; 
-            height: 60px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: var(--dark); 
+            padding: 0 15px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            position: sticky; 
+            top: 0; 
+            z-index: 2000; 
+            height: 65px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .menu-btn { font-size: 22px; color: white; background: none; border: none; cursor: pointer; padding: 5px; flex-shrink: 0; }
+        .menu-btn { 
+            font-size: 24px; color: white; background: none; border: none; 
+            cursor: pointer; padding: 10px; margin-left: -10px;
+        }
         
         .logo { 
-            font-size: 17px; font-weight: 800; color: white; text-decoration: none; 
-            margin-left: 5px; white-space: nowrap; flex-grow: 1;
+            font-size: 1.2rem; font-weight: 800; color: white; text-decoration: none; 
+            white-space: nowrap; flex-shrink: 0; margin: 0 10px;
         }
         .logo span { color: var(--secondary); }
         
-        /* Fixed: Matches HTML class name below */
         .header-right { 
-            display: flex !important; 
+            display: flex; 
             align-items: center; 
-            gap: 8px; 
-            flex-shrink: 0; 
+            gap: 10px; 
         }
 
-        .search-trigger { color: white; font-size: 18px; cursor: pointer; padding: 5px; }
+        .search-trigger { color: white; font-size: 18px; cursor: pointer; padding: 8px; }
         
         .social-btn { 
-            width: 30px; height: 30px; border-radius: 50%; display: flex !important; 
-            align-items: center; justify-content: center; color: white; 
-            text-decoration: none; font-size: 14px; flex-shrink: 0;
+            width: 32px; height: 32px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            color: white; text-decoration: none; font-size: 14px; transition: 0.3s;
         }
+        .social-btn:hover { transform: translateY(-2px); opacity: 0.9; }
         .bg-yt { background: var(--youtube); }
         .bg-wa { background: var(--whatsapp); }
         .bg-ig { background: var(--instagram); }
 
         /* --- SIDE DRAWER --- */
-        .backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; }
+        .backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2999; }
         .sidenav { height: 100%; width: 0; position: fixed; z-index: 3000; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.3s; padding-top: 60px; }
-        .sidenav a { padding: 15px 20px 15px 32px; text-decoration: none; font-size: 18px; color: #ccc; display: block; border-bottom: 1px solid #222; }
+        .sidenav a { padding: 15px 32px; text-decoration: none; font-size: 18px; color: #ccc; display: block; border-bottom: 1px solid #222; }
         .sidenav .closebtn { position: absolute; top: 10px; right: 20px; font-size: 36px; color: #fff; }
 
         /* --- CONTENT --- */
-        .hero { background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); color: white; text-align: center; padding: 40px 20px; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .video-wrapper { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .video-info { padding: 15px; }
-        .tag { font-size: 11px; font-weight: bold; color: var(--primary); background: #eee; padding: 2px 6px; border-radius: 4px; }
+        .hero { 
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); 
+            color: white; text-align: center; padding: 60px 20px; 
+        }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); margin: 0; }
 
-        /* --- SEARCH SLIDE --- */
-        #searchContainer { position: fixed; top: 60px; left: 0; width: 100%; background: white; padding: 10px; z-index: 1500; display: none; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-        #searchInput { width: 100%; padding: 10px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
-
-        footer { background: #111; color: #666; text-align: center; padding: 20px; font-size: 12px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* IMPROVED VIDEO GRID */
+        .video-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; 
+        }
 
         @media (max-width: 400px) {
-            .logo { font-size: 15px; }
-            .header-right { gap: 5px; }
-            .social-btn { width: 26px; height: 26px; font-size: 12px; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
+
+        .video-wrapper { 
+            background: white; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            transition: transform 0.3s ease;
+        }
+        .video-wrapper:hover { transform: translateY(-5px); }
+
+        .video-info { padding: 15px; }
+        .video-info h3 { margin: 10px 0 0 0; font-size: 1.1rem; line-height: 1.4; }
+        .tag { font-size: 11px; font-weight: bold; color: var(--primary); background: #e8eaf6; padding: 4px 8px; border-radius: 4px; }
+
+        /* --- SEARCH SLIDE --- */
+        #searchContainer { 
+            position: fixed; top: 65px; left: 0; width: 100%; 
+            background: white; padding: 15px; z-index: 1500; 
+            display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+        #searchInput { 
+            width: 100%; max-width: 800px; margin: 0 auto; display: block;
+            padding: 12px 20px; border-radius: 25px; border: 2px solid #eee; 
+            outline: none; font-size: 16px; 
+        }
+
+        /* --- FOOTER & CONTACT --- */
+        .contact-card {
+            text-decoration: none; color: white; background: rgba(255,255,255,0.08); 
+            padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: 0.3s;
+        }
+        .contact-card:hover { background: rgba(255,255,255,0.15); }
+
+        footer { background: #0a0a0a; color: #888; text-align: center; padding: 30px 20px; font-size: 13px; }
+
+        /* --- MOBILE TWEAKS --- */
+        @media (max-width: 480px) {
+            .logo { font-size: 1rem; }
+            .header-right .social-btn { display: none !important; } /* Hide social on tiny headers to prevent overlap */
+            .header-right .social-btn:first-of-type { display: flex !important; } /* Only keep YouTube if space is tight */
+            header { padding: 0 10px; }
         }
     </style>
 </head>
@@ -99,66 +159,75 @@
     <div id="preloader"><div class="spinner"></div></div>
 
     <div id="backdrop" class="backdrop" onclick="closeNav()"></div>
+    
     <div id="mySideDrawer" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#" onclick="closeNav()">Home</a>
         <a href="#videos" onclick="closeNav()">Videos</a>
         <a href="#contact" onclick="closeNav()">Contact</a>
+        <div style="padding: 20px 32px; display: flex; gap: 15px;">
+            <a href="https://youtube.com/@XplainerGuruOfficial" class="social-btn bg-yt" style="padding:0; border:none;"><i class="fab fa-youtube"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=918538944203" class="social-btn bg-wa" style="padding:0; border:none;"><i class="fab fa-whatsapp"></i></a>
+        </div>
     </div>
 
     <header>
-        <button class="menu-btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
-        <a href="#" class="logo">Xplainer<span>Guru</span></a>
+        <div style="display: flex; align-items: center;">
+            <button class="menu-btn" onclick="openNav()" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+            <a href="#" class="logo">Xplainer<span>Guru</span></a>
+        </div>
         
         <div class="header-right">
-            <i class="fas fa-search search-trigger" onclick="toggleSearch()"></i>
+            <i class="fas fa-search search-trigger" onclick="toggleSearch()" title="Search"></i>
             
-            <a href="https://youtube.com/@XplainerGuruOfficial" class="social-btn bg-yt" target="_blank">
+            <a href="https://youtube.com/@XplainerGuruOfficial" class="social-btn bg-yt" target="_blank" aria-label="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
             
-            <a href="https://api.whatsapp.com/send?phone=918538944203" class="social-btn bg-wa" target="_blank">
+            <a href="https://api.whatsapp.com/send?phone=918538944203" class="social-btn bg-wa" target="_blank" aria-label="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
             
-            <a href="https://ig.me/m/xplainer.guru.official" class="social-btn bg-ig" target="_blank">
+            <a href="https://ig.me/m/xplainer.guru.official" class="social-btn bg-ig" target="_blank" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
     </header>
 
     <div id="searchContainer">
-        <input type="text" id="searchInput" oninput="filterVideos()" placeholder="Search lessons...">
+        <input type="text" id="searchInput" oninput="filterVideos()" placeholder="Search lessons (e.g. History, Chapter 1)...">
     </div>
 
     <section class="hero">
         <h1>Class 8 Study Hub</h1>
-        <p>Explanations & Notes</p>
+        <p style="opacity: 0.9; margin-top: 10px;">Quality Explanations & Comprehensive Notes</p>
     </section>
 
-    <div class="container">
-        <h2 id="videos">Latest Lessons</h2>
-        <div class="video-grid">
+    <main class="container">
+        <h2 id="videos" style="margin-bottom: 25px;">Latest Lessons</h2>
+        <div class="video-grid" id="videoGrid">
+            
             <div class="video-wrapper">
                 <lite-youtube videoid="GQhRGVIFGtA"></lite-youtube>
                 <div class="video-info">
                     <span class="tag">History • Chapter 1</span>
-                    <h3>Class 8th | History | Chapter 1</h3>
+                    <h3>Class 8th | History | Chapter 1: How, When and Where</h3>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <section id="contact" style="background: var(--dark); color: white; padding: 50px 20px; text-align: center;">
-        <h2 style="color: var(--secondary);">Let's Connect</h2>
+            </div>
+    </main>
+
+    <section id="contact" style="background: var(--dark); color: white; padding: 60px 20px; text-align: center;">
+        <h2 style="color: var(--secondary); margin-bottom: 30px;">Let's Connect</h2>
         <div style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
-            <a href="mailto:ashutoshkl1412@gmail.com" style="text-decoration: none; color: white; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <a href="mailto:ashutoshkl1412@gmail.com" class="contact-card">
                 <i class="fas fa-envelope"></i> Email Us
             </a>
-            <a href="https://ig.me/m/xplainer.guru.official" target="_blank" style="text-decoration: none; color: white; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <a href="https://ig.me/m/xplainer.guru.official" target="_blank" class="contact-card">
                 <i class="fab fa-instagram"></i> Instagram DM
             </a>
-            <a href="https://api.whatsapp.com/send?phone=918538944203" target="_blank" style="text-decoration: none; color: white; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <a href="https://api.whatsapp.com/send?phone=918538944203" target="_blank" class="contact-card">
                 <i class="fab fa-whatsapp"></i> Chat on WhatsApp
             </a>
         </div>
@@ -166,6 +235,7 @@
 
     <footer>
         <p>&copy; <span id="year"></span> XplainerGuru. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 10px; letter-spacing: 1px;">MADE FOR STUDENTS</p>
     </footer>
 
     <script src="https://paulirish.github.io/lite-youtube-embed/src/lite-yt-embed.js"></script>
@@ -179,7 +249,7 @@
         });
 
         function openNav() {
-            document.getElementById("mySideDrawer").style.width = "250px";
+            document.getElementById("mySideDrawer").style.width = "280px";
             document.getElementById("backdrop").style.display = "block";
         }
         function closeNav() {
@@ -188,15 +258,18 @@
         }
         function toggleSearch() {
             const sc = document.getElementById("searchContainer");
-            sc.style.display = sc.style.display === "block" ? "none" : "block";
-            if(sc.style.display === "block") document.getElementById("searchInput").focus();
+            const isVisible = sc.style.display === "block";
+            sc.style.display = isVisible ? "none" : "block";
+            if(!isVisible) document.getElementById("searchInput").focus();
         }
         function filterVideos() {
             const filter = document.getElementById('searchInput').value.toUpperCase();
             const videos = document.getElementsByClassName('video-wrapper');
             for (let i = 0; i < videos.length; i++) {
-                const title = videos[i].getElementsByTagName("h3")[0].innerText;
-                videos[i].style.display = title.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+                const title = videos[i].querySelector("h3").innerText;
+                const tag = videos[i].querySelector(".tag").innerText;
+                const match = (title + tag).toUpperCase().indexOf(filter) > -1;
+                videos[i].style.display = match ? "" : "none";
             }
         }
     </script>
