@@ -60,18 +60,52 @@
         .sidenav a:hover { color: var(--secondary); background: #222; }
         .sidenav .closebtn { position: absolute; top: 10px; right: 20px; font-size: 36px; border: none; color: #fff; }
 
-        /* --- HEADER --- */
-        header { background: var(--dark); padding: 10px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.2); height: 60px; box-sizing: border-box; }
-        .menu-btn { font-size: 24px; color: white; cursor: pointer; background: none; border: none; padding: 5px; }
-        .logo { font-size: 20px; font-weight: 800; color: white; text-decoration: none; flex-grow: 1; }
-        .logo span { color: var(--secondary); }
-        .header-actions { display: flex; gap: 15px; align-items: center; }
-        .search-trigger { color: white; font-size: 20px; cursor: pointer; transition: 0.3s; }
-        .search-trigger:hover { color: var(--secondary); }
-        .social-btn { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 16px; transition: 0.3s; }
+        /* --- HEADER ACTIONS (Container for buttons) --- */
+        .header-actions { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            flex-shrink: 0; /* CRITICAL: Prevents buttons from disappearing */
+        }
+
+        /* --- SOCIAL BUTTONS --- */
+        .social-btn { 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-decoration: none; 
+            font-size: 16px; 
+            transition: 0.3s;
+            flex-shrink: 0; /* CRITICAL: Forces button to keep its size */
+        }
         .bg-yt { background: var(--youtube); }
         .bg-wa { background: var(--whatsapp); }
         .bg-ig { background: var(--instagram); }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .logo { 
+                font-size: 16px; /* Smaller logo on phone to make room */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            } 
+            
+            /* Force buttons to stay visible */
+            .social-btn { 
+                display: flex !important; 
+                width: 28px; 
+                height: 28px; 
+                font-size: 12px; 
+            }
+            
+            .header-actions { gap: 6px; } /* Tighter gap on phones */
+            header { padding: 10px 12px; }
+        }
 
         /* --- SEARCH BAR --- */
         #searchContainer { position: fixed; top: 60px; left: 0; width: 100%; background: white; padding: 15px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 999; box-sizing: border-box; display: none; animation: slideDown 0.3s ease-out; }
