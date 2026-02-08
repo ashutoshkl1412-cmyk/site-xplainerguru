@@ -57,13 +57,13 @@
         
         .logo { 
             font-size: 20px; font-weight: 800; color: white; text-decoration: none; flex-grow: 1; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; /* Prevents layout break */
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
         }
         .logo span { color: var(--secondary); }
         
         .header-actions { 
             display: flex; gap: 10px; align-items: center; 
-            flex-shrink: 0; /* CRITICAL: Keeps buttons visible on phone */
+            flex-shrink: 0; 
         }
         
         .search-trigger { color: white; font-size: 20px; cursor: pointer; transition: 0.3s; padding: 5px; }
@@ -71,7 +71,7 @@
         
         .social-btn { 
             width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 16px; transition: 0.3s; 
-            flex-shrink: 0; /* CRITICAL */
+            flex-shrink: 0; 
         }
         .bg-yt { background: var(--youtube); }
         .bg-wa { background: var(--whatsapp); }
@@ -188,18 +188,14 @@
     </section>
 
     <div class="container">
-        
         <div class="wa-banner">
             <i class="fab fa-whatsapp" style="font-size: 30px; color: var(--whatsapp);"></i>
             <h3>Join Class 8 WhatsApp</h3>
             <p>Get Notes & Exam Alerts!</p>
-            <a href="https://whatsapp.com/channel/0029Vb7p4QV0QeadmOIpgx36" target="_blank" class="wa-link">
-                JOIN NOW
-            </a>
+            <a href="https://whatsapp.com/channel/0029Vb7p4QV0QeadmOIpgx36" target="_blank" class="wa-link">JOIN NOW</a>
         </div>
 
         <h2 id="videos" style="margin-left: 5px;">Latest Class 8 Lessons</h2>
-        
         <div id="noResults">
             <i class="fas fa-box-open" style="font-size: 40px; margin-bottom: 10px;"></i>
             <p>No lessons found. Try searching for "History" or "Math".</p>
@@ -213,12 +209,11 @@
                     <h3>Class 8th | History | Chapter 1 | How, when and where</h3>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 
     <section id="contact" class="contact-section">
         <div class="contact-container">
-            
             <div class="contact-info">
                 <h2>Let's Connect</h2>
                 <p>Have a doubt? Click below to reach me instantly.</p>
@@ -239,7 +234,7 @@
                     </div>
                 </a>
 
-                <a href="https://api.whatsapp.com/send?phone=910000000000" target="_blank" class="info-item">
+                <a href="https://api.whatsapp.com/send?phone=918538944203" target="_blank" class="info-item">
                     <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
                     <div class="info-text">
                         <h4>Chat on WhatsApp</h4>
@@ -247,7 +242,6 @@
                     </div>
                 </a>
             </div>
-
         </div>
     </section>
 
@@ -264,7 +258,6 @@
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
-        /* Preloader Fade Out */
         window.addEventListener("load", function(){
             var loader = document.getElementById("preloader");
             loader.style.opacity = "0";
