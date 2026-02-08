@@ -3,110 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>XplainerGuru | Class 8</title>
+    <title>XplainerGuru | Class 8 Portal</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://paulirish.github.io/lite-youtube-embed/src/lite-yt-embed.css" />
 
     <style>
-        /* Essential YouTube CSS (Inlined so it never fails) */
-        lite-youtube{background-color:#000;position:relative;display:block;contain:content;background-position:center center;background-size:cover;cursor:pointer;max-width:100%}
-        lite-youtube::before{content:'';display:block;padding-top:56.25%}
-        lite-youtube > iframe{width:100%;height:100%;position:absolute;top:0;left:0;border:0}
+        /* --- BRAND VARIABLES --- */
+        :root {
+            --dark-navy: #1a1a2e;
+            --accent-gold: #ffc107;
+            --primary-blue: #3f51b5;
+            --pure-white: #ffffff;
+            --social-yt: #ff0000;
+            --social-wa: #25d366;
+        }
 
-        :root { --c1: #1a1a2e; --c2: #ffc107; --c3: #3f51b5; --c4: #ffffff; }
+        /* --- CORE RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: #f4f4f4; 
+            color: #333; 
+            overflow-x: hidden;
+            width: 100%;
+        }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; width: 100%; overflow-x: hidden; }
-
-        /* --- RIGID HEADER --- */
+        /* --- RIGID HEADER (Mobile Optimized) --- */
         header { 
-            background: var(--c1); 
+            background: var(--dark-navy); 
             height: 60px; 
             width: 100%; 
-            position: sticky; top: 0; z-index: 9999;
+            position: sticky; top: 0; z-index: 9000;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 10px;
+            padding: 0 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .h-l { display: flex; align-items: center; flex: 1; }
-        .h-r { display: flex; align-items: center; gap: 8px; }
+        .header-l { display: flex; align-items: center; flex: 1; min-width: 0; }
+        .header-r { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-        .logo-txt { color: white; text-decoration: none; font-weight: 800; font-size: 17px; margin-left: 8px; }
-        .logo-txt span { color: var(--c2); }
+        .logo-txt { 
+            color: var(--pure-white); text-decoration: none; font-weight: 800; font-size: 1.1rem; 
+            margin-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .logo-txt span { color: var(--accent-gold); }
 
-        /* Neutral Class Names to bypass Ad-Blockers */
-        .box-btn {
-            width: 34px; height: 34px; min-width: 34px;
+        /* BUTTONS (Stealth names to bypass mobile social blockers) */
+        .action-btn {
+            width: 34px; height: 34px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; border: none; cursor: pointer; text-decoration: none;
+            border: none; cursor: pointer; text-decoration: none;
+            transition: 0.2s; background: transparent;
+        }
+        .action-btn:active { transform: scale(0.95); }
+        
+        .c-yt { background: var(--social-yt); }
+        .c-wa { background: var(--social-wa); }
+
+        /* SVG SIZING (Forces visibility in all browsers) */
+        svg { width: 20px; height: 20px; display: block; }
+
+        /* --- SEARCH PANEL --- */
+        #search-overlay {
+            display: none; background: #fff; padding: 12px;
+            border-bottom: 2px solid #eee; width: 100%;
+            position: fixed; top: 60px; z-index: 8000;
+        }
+        #search-box { 
+            width: 100%; padding: 10px 15px; border-radius: 20px; 
+            border: 1px solid #ccc; font-size: 16px; outline: none; background: #f9f9f9;
         }
 
-        /* Explicit SVG sizing for mobile engines */
-        svg { width: 20px; height: 20px; display: block; fill: white; stroke: white; }
+        /* --- SIDEBAR DRAWER --- */
+        #side-menu { 
+            position: fixed; top: 0; left: -280px; width: 280px; height: 100%; 
+            background: #111; z-index: 10000; transition: 0.3s ease; padding: 25px; 
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        }
+        #side-menu a { 
+            color: #ddd; display: block; padding: 15px 0; 
+            text-decoration: none; border-bottom: 1px solid #222; font-size: 17px;
+        }
+        #side-mask { 
+            display: none; position: fixed; top: 0; left: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9998; 
+        }
 
-        /* --- SIDEBAR --- */
-        #sb { position: fixed; top: 0; left: -100%; width: 260px; height: 100%; background: #111; z-index: 10000; transition: 0.3s; padding: 20px; }
-        #sb a { color: white; display: block; padding: 15px; text-decoration: none; border-bottom: 1px solid #222; }
-        #ov { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9998; }
+        /* --- HERO & MAIN CONTENT --- */
+        .hero { 
+            background: linear-gradient(135deg, var(--dark-navy), var(--primary-blue)); 
+            color: #fff; text-align: center; padding: 45px 20px; 
+        }
+        .main-sec { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .vid-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 20px; 
+        }
+        
+        .vid-card { 
+            background: #fff; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+        }
+        .card-body { padding: 15px; }
+        .card-tag { font-size: 11px; font-weight: 700; color: var(--primary-blue); background: #eef2ff; padding: 4px 8px; border-radius: 4px; }
+        .card-name { font-size: 16px; margin-top: 8px; line-height: 1.4; font-weight: 600; }
 
-        /* --- UI ELEMENTS --- */
-        .hero { background: linear-gradient(135deg, var(--c1), var(--c3)); color: white; text-align: center; padding: 40px 15px; }
-        .main-sec { max-width: 1000px; margin: 0 auto; padding: 15px; }
-        .v-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        /* FOOTER */
+        footer { background: #000; color: #777; text-align: center; padding: 30px; font-size: 12px; margin-top: 40px; }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 400px) {
+            .logo-txt { font-size: 1rem; }
+            .header-r { gap: 6px; }
+            .action-btn { width: 32px; height: 32px; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="ov" onclick="tgl()"></div>
-    <div id="sb">
-        <button onclick="tgl()" style="color:white; background:none; border:none; font-size:30px;">&times;</button>
-        <a href="#">Home</a>
-        <a href="#lessons">Lessons</a>
+    <div id="side-mask" onclick="toggleSidebar()"></div>
+
+    <div id="side-menu">
+        <button onclick="toggleSidebar()" style="background:none; border:none; color:#fff; font-size:30px; margin-bottom:20px; cursor:pointer;">&times;</button>
+        <a href="#" onclick="toggleSidebar()">Home</a>
+        <a href="#videos" onclick="toggleSidebar()">Latest Lessons</a>
+        <a href="https://youtube.com/@XplainerGuruOfficial" target="_blank">YouTube Channel</a>
     </div>
 
     <header>
-        <div class="h-l">
-            <button class="box-btn" onclick="tgl()" style="background:none;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <div class="header-l">
+            <button class="action-btn" onclick="toggleSidebar()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
             <a href="#" class="logo-txt">Xplainer<span>Guru</span></a>
         </div>
 
-        <div class="h-r">
-            <a href="https://youtube.com/@XplainerGuruOfficial" class="box-btn" style="background:#ff0000;" target="_blank">
-                <svg viewBox="0 0 24 24" fill="white" stroke="none"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5c-1.1.3-1.9 1.1-2.2 2.2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        <div class="header-r">
+            <button class="action-btn" onclick="toggleSearch()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            
+            <a href="https://youtube.com/@XplainerGuruOfficial" class="action-btn c-yt" target="_blank">
+                <svg viewBox="0 0 24 24" fill="#fff"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5c-1.1.3-1.9 1.1-2.2 2.2C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
             </a>
-            <a href="https://wa.me/918538944203" class="box-btn" style="background:#25d366;" target="_blank">
-                <svg viewBox="0 0 24 24" fill="white" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            
+            <a href="https://wa.me/918538944203" class="action-btn c-wa" target="_blank">
+                <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
         </div>
     </header>
 
+    <div id="search-overlay">
+        <input type="text" id="search-box" oninput="runFilter()" placeholder="Search History, Chapter 1...">
+    </div>
+
     <section class="hero">
-        <h1>Class 8 Hub</h1>
-        <p>Expert Education</p>
+        <h1>Class 8 Study Hub</h1>
+        <p>Expert Explanations & Quality Notes</p>
     </section>
 
-    <div class="main-sec" id="lessons">
-        <div class="v-card">
-            <lite-youtube videoid="GQhRGVIFGtA"></lite-youtube>
-            <div style="padding:15px;">
-                <h3 style="font-size:16px;">History | Chapter 1</h3>
+    <div class="main-sec" id="videos">
+        <h2 style="margin-bottom: 20px;">Latest Lessons</h2>
+        <div class="vid-grid">
+            
+            <div class="vid-card">
+                <lite-youtube videoid="GQhRGVIFGtA"></lite-youtube>
+                <div class="card-body">
+                    <span class="card-tag">History • Chapter 1</span>
+                    <h3 class="card-name">Class 8th | History | Chapter 1: How, When and Where</h3>
+                </div>
             </div>
-        </div>
+
+            </div>
     </div>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> XplainerGuru. All Rights Reserved.</p>
+    </footer>
 
     <script src="https://paulirish.github.io/lite-youtube-embed/src/lite-yt-embed.js"></script>
     <script>
-        function tgl() {
-            var s = document.getElementById("sb");
-            var o = document.getElementById("ov");
-            if (s.style.left === "0px") {
-                s.style.left = "-100%";
-                o.style.display = "none";
+        // Set dynamic footer year
+        document.getElementById("current-year").innerHTML = new Date().getFullYear();
+
+        // Toggle Sidebar Drawer
+        function toggleSidebar() {
+            var menu = document.getElementById("side-menu");
+            var mask = document.getElementById("side-mask");
+            if (menu.style.left === "0px") {
+                menu.style.left = "-280px";
+                mask.style.display = "none";
             } else {
-                s.style.left = "0px";
-                o.style.display = "block";
+                menu.style.left = "0px";
+                mask.style.display = "block";
+            }
+        }
+
+        // Toggle Search Bar
+        function toggleSearch() {
+            var panel = document.getElementById("search-overlay");
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+                document.getElementById("search-box").focus();
+            }
+        }
+
+        // Live Search Filter Logic
+        function runFilter() {
+            var val = document.getElementById("search-box").value.toUpperCase();
+            var items = document.getElementsByClassName("vid-card");
+            for (var i = 0; i < items.length; i++) {
+                var title = items[i].querySelector(".card-name").innerText.toUpperCase();
+                var tag = items[i].querySelector(".card-tag").innerText.toUpperCase();
+                if ((title + tag).indexOf(val) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
             }
         }
     </script>
